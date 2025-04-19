@@ -39,7 +39,7 @@ router.post("/register", async (req, res) => {
   delete result.password;
 
   result.token = generateToken({
-      id: result.id
+      userId: result._id
   })
 
     
@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
   }
 
   if(!(await bcrypt.compare(password, user.password))) {
-    return res.status(401).json({message: "Incorrect Email or password!S"})
+    return res.status(401).json({message: "Incorrect Email or password!"})
   }
 
   const token = generateToken({
